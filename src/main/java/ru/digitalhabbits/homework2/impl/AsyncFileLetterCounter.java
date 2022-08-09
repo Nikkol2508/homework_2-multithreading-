@@ -6,12 +6,19 @@ import java.util.Map;
 
 import ru.digitalhabbits.homework2.FileLetterCounter;
 
-//todo Make your impl
 public class AsyncFileLetterCounter implements FileLetterCounter {
+
+    private final FileReaderImpl fileReader = new FileReaderImpl();
+    private final LetterCounterImpl letterCounter = new LetterCounterImpl();
+    private final LetterCountMergerImpl letterCountMerger = new LetterCountMergerImpl();
 
     @Override
     public Map<Character, Long> count(File input) {
-        //todo
-        return Collections.emptyMap();
+
+        return fileReader.readLines(input)
+                .parallel()
+                .map(letterCounter::count)
+                .reduce(letterCountMerger::merge)
+                .orElse(Collections.emptyMap());
     }
 }
