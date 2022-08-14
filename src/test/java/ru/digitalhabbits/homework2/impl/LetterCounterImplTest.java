@@ -1,13 +1,11 @@
 package ru.digitalhabbits.homework2.impl;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LetterCounterImplTest {
 
